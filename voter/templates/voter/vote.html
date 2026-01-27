@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>投票画面</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'voter/vote.css' %}">
+</head>
+<body>
+    
+<div class="container">
+    <a href="{% url 'election_list' %}" class="back-link">
+        ← 選挙一覧に戻る
+    </a>
+    {% if error %}
+        <p style="color:red;">{{ error }}</p>
+    {% endif %}
+    <h2 class="title">{{ election.name }}</h2>
+    <form method="post" class="vote-form">
+        {% csrf_token %}
+
+        <h3>候補者を選択</h3>
+
+        <table class="candidate-table">
+            <tr>
+                <th>立候補者</th>
+                <th>所属</th>
+            </tr>
+
+            {% for c in candidates %}
+            <tr>
+                <td>
+                    <label class="radio-label">
+                        <input type="radio" name="candidate" value="{{ c.id }}" required>
+                        {{ c.name }}
+                    </label>
+                </td>
+                <td>
+                    {{ c.party.name|default:"無所属" }}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        {% if need_party %}
+            <h3>政党を選択</h3>
+            <div class="party-list">
+                {% for p in party %}
+                    <label class="radio-label">
+                        <input type="radio" name="party" value="{{ p.id }}" required>
+                        {{ p.name }}
+                    </label>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <button type="submit" class="submit-btn">確認へ進む</button>
+    </form>
+</div>
+
+</body>
+</html>

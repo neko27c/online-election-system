@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>新規投票者登録</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'administrator/voter_create.css' %}">
+</head>
+<body>
+    
+    <div class="register-container">
+        <a href="{% url 'administrator:main_menu' %}" class="back-link">
+            管理者メニューへ
+        </a>
+
+        <h1><i>投票者登録</i></h1>
+        <hr>
+        <p class="instruction">新規投票者の情報を入力してください</p>
+        
+        <form method="post">
+            {% csrf_token %}
+            {% if error %}
+                <p class="error" style="color:red;">{{ error }}</p>
+            {% endif %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="message {{ message.tags }}">
+                        {{ message }}
+                    </p>
+                {% endfor %}
+            {% endif %}
+            <input type="text" name="person_id" placeholder="person_id" required>
+            <!-- ラジオボタン横並び -->
+            <div class="id-type-group">
+                <label class="id-type-item">
+                    <input type="radio" name="id_type" value="my_number" required>
+                    マイナンバー
+                </label>
+
+                <label class="id-type-item">
+                    <input type="radio" name="id_type" value="vote_code">
+                    投票用コード
+                </label>
+            </div>
+            <input type="password" name="password" placeholder="password" required>
+            <button type="submit">新規登録</button>
+        </form>
+    </div>
+</body>
+</html>

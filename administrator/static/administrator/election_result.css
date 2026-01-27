@@ -1,0 +1,63 @@
+body {
+    font-family: sans-serif;
+    margin: 30px;
+    background-color: #fafafa;
+}
+
+.page-title {
+    margin-bottom: 30px;
+}
+
+/* 左右レイアウト */
+.result-container {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+/* 各結果ブロック */
+.result-box {
+    flex: 1;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 6px;
+}
+
+/* 見出し */
+.result-box h2 {
+    margin-bottom: 15px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
+}
+
+/* テーブル */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 8px 10px;
+    text-align: left;
+}
+
+thead th {
+    background-color: #f0f0f0;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.empty {
+    text-align: center;
+    color: #777;
+}
+
+/* 戻るボタン */
+.back-btn {
+    display: inline-block;
+    margin-top: 30px;
+    text-decoration: none;
+    color: #0056b3;
+}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>選挙一覧</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'administrator/election_list.css' %}">
+</head>
+<body>
+    <div class="execute-container">
+        <h1>選挙一覧</h1>
+
+        <a href="{% url 'administrator:main_menu' %}" class="back-btn">管理者メニューに戻る</a>
+
+        <form method="get">
+            <div class="search-box">
+                <input
+                    type="text"
+                    name="q"
+                    placeholder="選挙名で検索"
+                    value="{{ q }}"
+                >
+                <button type="submit">検索</button>
+            </div>
+        </form>
+
+        <table class="election-table">
+            <thead>
+                <tr>
+                    <th>選挙名</th>
+                    <th>選挙区分</th>
+                    <th>実施地区</th>
+                    <th>開始日</th>
+                    <th>終了日</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for e in elections %}
+                <tr>
+                    <td>
+                        <a href="{% url 'administrator:election_detail' e.pk %}">{{ e.name }}</a>
+                    </td>
+                    <td>{{ e.type }}</td>
+                    <td>
+                        {% if e.area %}
+                            {{ e.area.name }}
+                        {% else %}
+                            全国
+                        {% endif %}
+                    </td>
+                    <td>{{ e.start_date }}</td>
+                    <td>{{ e.end_date }}</td>
+                    <td>
+                        <form method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <input type="hidden" name="election_id" value="{{ e.id }}">
+
+                            {% if e.status == "未実施" %}
+                                <button type="submit" name="action" value="start" class="start-btn">
+                                    開始
+                                </button>
+
+                            {% elif e.status == "実施中" %}
+                                <button type="submit" name="action" value="stop" class="stop-btn">
+                                    停止
+                                </button>
+
+                            {% elif e.status == "終了" %}
+                                <button class="disabled-btn" disabled>終了</button>
+                            {% endif %}
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>

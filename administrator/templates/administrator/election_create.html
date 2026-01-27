@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>選挙情報登録フォーム</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'administrator/election_create.css' %}">
+</head>
+<body>
+    <a href="{% url 'administrator:main_menu' %}" class="back-btn">管理者メニューに戻る</a>
+
+    <h1 class="title">選挙情報登録フォーム</h1>
+
+    <form class="form-box" method="post">
+    {% csrf_token %}
+
+        <label>選挙名</label>
+        <input type="text" name="name" value="{{ values.name }}" placeholder='例：第58回衆議院議員総選挙'>
+        {% if errors.name %}
+        <span class="error-text">{{ errors.name }}</span>
+        {% endif %}
+
+        <label>選挙区分</label>
+        <div class="select-box">
+            <select name="type">
+                <option value="" disabled selected>選択してください</option>
+                <option value="衆議院">衆議院</option>
+                <option value="参議院">参議院</option>
+                <option value="地方選挙">地方選挙</option>
+                <option value="その他">その他</option>
+            </select>
+        </div>
+        {% if errors.type %}
+        <span class="error-text">{{ errors.type }}</span>
+        {% endif %}
+
+        
+        <label>選択エリア</label>
+
+        <!-- 地方ボックス -->
+        <div id="regionBox" class="button-box"></div>
+        <!-- 都道府県ボックス -->
+        <div id="prefBox" class="button-box hidden"></div>
+        <!-- 市区町村ボックス -->
+        <div id="cityBox" class="button-box hidden"></div>
+
+        <input type="hidden" id="selectedAreas" name="area">
+
+        {% if errors.area %}
+        <span class="error-text">{{ errors.area }}</span>
+        {% endif %}
+
+
+        <label>開始日</label>
+        <input type="datetime-local" name="start_date" value="{{ values.start_date }}" placeholder='例：2025-06-08'>
+        {% if errors.start_date %}
+        <span class="error-text">{{ errors.start_date }}</span>
+        {% endif %}
+
+        <label>終了日</label>
+        <input type="datetime-local" name="end_date" value="{{ values.end_date }}" placeholder='例：2025-06-09'>
+        {% if errors.end_date %}
+        <span class="error-text">{{ errors.end_date }}</span>
+        {% endif %}
+
+        {% if errors.date_order %}
+        <span class="error-text">{{ errors.date_order }}</span>
+        {% endif %}
+
+        <button class="submit-btn">登録</button>
+    </form>
+
+<script>
+const regions = {{ regions_json|safe }};
+
+const regionBox = document.getElementById("regionBox");
+const prefBox   = document.getElementById("prefBox");
+const cityBox   = document.getElementById("cityBox");
+
+let selectedArea = null;  // ← どれか1つだけ保持
+
+/* =========================================================
+   ボタン状態のクリア（全ての active を外す）
+========================================================= */
+function clearAllActive() {
+    document.querySelectorAll(".area-btn").forEach(btn => {
+        btn.classList.remove("active");
+    });
+}
+
+/* =========================================================
+   ★ 選択切り替え（完全に単一選択）
+========================================================= */
+function selectOne(btn) {
+    clearAllActive();
+    btn.classList.add("active");
+
+    const areaId = btn.dataset.id;
+    selectedArea = areaId;
+
+    document.getElementById("selectedAreas").value = areaId;
+}
+
+
+/* =========================================================
+   地方を描画（選択ボタン + ▼展開ボタン）
+========================================================= */
+regions.forEach(region => {
+
+    const row = document.createElement("div");
+    row.className = "area-row";
+
+    const selectBtn = document.createElement("button");
+    selectBtn.type = "button";
+    selectBtn.className = "area-btn";
+    selectBtn.textContent = region.name;
+
+    // ★ id を保持
+    selectBtn.dataset.id = region.id;
+
+    selectBtn.onclick = () => {
+        selectOne(selectBtn);
+        showPref(region);
+    };
+
+
+    row.appendChild(selectBtn);
+    regionBox.appendChild(row);
+});
+
+
+
+/* =========================================================
+   都道府県表示
+========================================================= */
+function showPref(region) {
+    prefBox.innerHTML = "";
+    cityBox.innerHTML = "";
+    cityBox.classList.add("hidden");
+
+    region.children.forEach(pref => {
+
+        const row = document.createElement("div");
+        row.className = "area-row";
+
+        // 都道府県ボタン
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "area-btn small";
+        btn.textContent = pref.name;
+
+        // ★ idを保持
+        btn.dataset.id = pref.id;
+
+        btn.onclick = () => {
+            selectOne(btn);
+        };
+
+        // ▼ 市区町村展開ボタン
+        if (pref.children && pref.children.length > 0) {
+            const arrow = document.createElement("span");
+            arrow.className = "arrow";
+            arrow.textContent = "▼";
+
+            arrow.onclick = () => {
+                showCity(pref);
+            };
+
+            row.appendChild(arrow);
+        }
+
+        row.appendChild(btn);
+        prefBox.appendChild(row);
+    });
+
+    prefBox.classList.remove("hidden");
+}
+
+
+
+/* =========================================================
+   市区町村表示
+========================================================= */
+function showCity(pref) {
+    cityBox.innerHTML = "";
+
+    if (!pref.children || pref.children.length === 0) {
+        cityBox.classList.add("hidden");
+        return;
+    }
+
+    pref.children.forEach(city => {
+
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "area-btn small";
+        btn.textContent = city.name;
+
+        // ★ idを保持
+        btn.dataset.id = city.id;
+
+        btn.onclick = () => {
+            selectOne(btn);
+            showPref(region);
+        };
+
+        cityBox.appendChild(btn);
+    });
+
+    cityBox.classList.remove("hidden");
+}
+</script>
+
+
+
+</body>
+</html>

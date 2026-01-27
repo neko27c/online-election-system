@@ -1,0 +1,128 @@
+/* 全体リセット */
+* {
+    box-sizing: border-box;
+    font-family: "Segoe UI", "Hiragino Kaku Gothic ProN", sans-serif;
+}
+
+/* 背景 */
+body {
+    background: #f5f3ff;
+    margin: 0;
+    padding: 8px 20px;
+    color: #333;
+}
+
+/* 管理者メニューに戻る */
+.back-btn {
+    display: inline-block;
+    margin-bottom: 0px;
+    text-decoration: none;
+    color: #6b63ff;
+    font-weight: 600;
+}
+
+.back-btn:hover {
+    text-decoration: underline;
+}
+
+/* メインカード */
+body > h1,
+body > p,
+body > h2,
+body > ul,
+body > a + button {
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* タイトル */
+h1 {
+    background: white;
+    padding: 18px;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(120, 100, 255, 0.15);
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* 選挙情報 */
+p {
+    background: white;
+    padding: 12px 20px;
+    border-radius: 12px;
+    margin: 8px auto;
+    box-shadow: 0 4px 12px rgba(120, 100, 255, 0.1);
+}
+
+/* 編集ボタン */
+button {
+    display: block;
+    margin: 24px auto;
+    padding: 12px 40px;
+    font-size: 16px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    background: linear-gradient(135deg, #8f87ff, #b8b3ff);
+    color: white;
+    box-shadow: 0 6px 16px rgba(120, 100, 255, 0.25);
+}
+
+button:hover:not(:disabled) {
+    opacity: 0.9;
+}
+
+button:disabled {
+    background: #ccc;
+    box-shadow: none;
+    cursor: not-allowed;
+}
+
+/* 見出し */
+h2 {
+    margin-top: 40px;
+    margin-bottom: 16px;
+    padding-left: 12px;
+    border-left: 6px solid #8f87ff;
+    font-size: 22px;
+}
+
+/* 立候補者一覧 */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    background: white;
+    padding: 14px 20px;
+    margin-bottom: 12px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(120, 100, 255, 0.1);
+    font-size: 15px;
+}
+
+/* 見出し＋件数の横並び */
+.candidate-header {
+    display: flex;
+    align-items: center;
+    max-width: 720px;
+    margin: 40px auto 16px;
+}
+
+.candidate-header h2 {
+    margin: 0;
+    padding-left: 12px;
+    border-left: 6px solid #8f87ff;
+    font-size: 22px;
+}
+
+.candidate-header p {
+    margin: 0 0 0 auto;
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    font-size: 14px;
+    color: #666;
+}

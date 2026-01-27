@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>投票完了</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'voter/vote_complete.css' %}">
+</head>
+<body>
+    <div class="wrapper">
+        <h1>投票が完了しました</h1>
+
+        <p>お疲れ様でした。投票内容は正常に記録されました。</p>
+
+        <a href="{% url 'dashboard' %}" class="back-btn">
+            マイページへ戻る
+        </a>
+    </div>
+</body>
+</html>

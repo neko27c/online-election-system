@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>投票内容の確認</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'voter/vote_confirm.css' %}">
+</head>
+<body>
+
+    <h1>{{ election.name }} の投票確認</h1>
+
+    <p>
+        <strong>候補者：</strong>
+        {{ candidate.name }}
+        {% if candidate.party %}
+            （{{ candidate.party.name }}）
+        {% endif %}
+    </p>
+
+    {% if party %}
+        <p>
+            <strong>政党：</strong>
+            {{ party.name }}
+        </p>
+    {% endif %}
+
+    <hr>
+
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit">この内容で投票する</button>
+    </form>
+
+    <br>
+
+    <a href="{% url 'vote_page' election.id %}">
+        ← 投票内容を選び直す
+    </a>
+
+</body>
+</html>

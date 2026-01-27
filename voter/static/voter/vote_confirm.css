@@ -1,0 +1,80 @@
+/* ===== ベース ===== */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 60px 0;
+    background-color: #f5f6fb;
+    font-family: "Segoe UI", "Hiragino Sans", "Meiryo", sans-serif;
+    color: #333;
+}
+
+/* ===== 中央コンテナ ===== */
+body > * {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ===== タイトル ===== */
+h1 {
+    text-align: center;
+    font-size: 1.7em;
+    margin-bottom: 40px;
+    font-weight: 600;
+}
+
+/* ===== 投票内容 ===== */
+p {
+    background-color: #ffffff;
+    padding: 16px 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    font-size: 1.05em;
+}
+
+/* ===== 区切り線 ===== */
+hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 30px 0;
+}
+
+/* ===== 投票ボタン ===== */
+form {
+    text-align: center;
+}
+
+button {
+    background-color: #4c5cff;
+    color: #ffffff;
+    border: none;
+    border-radius: 20px;
+    padding: 14px 40px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(76, 92, 255, 0.3);
+    transition: 0.2s;
+}
+
+button:hover {
+    background-color: #3f4be0;
+    transform: translateY(-2px);
+}
+
+/* ===== 戻るリンク ===== */
+a {
+    display: block;
+    text-align: center;
+    margin-top: 30px;
+    color: #666;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}

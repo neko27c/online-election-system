@@ -1,0 +1,17 @@
+<!-- voter/candidate_detail.html -->
+<h1>{{ candidate.name }}</h1>
+
+<p><strong>所属政党：</strong>
+    {{ candidate.party.name|default:"無所属" }}
+</p>
+
+<p><strong>生年月日：</strong> {{ candidate.birth_date }}</p>
+<p><strong>当選回数：</strong> {{ candidate.elected_count }}</p>
+
+<h2>政策</h2>
+<p>{{ candidate.policy|linebreaks }}</p>
+
+<h2>経歴</h2>
+<p>{{ candidate.career|linebreaks }}</p>
+
+<a href="javascript:history.back()">← 戻る</a>

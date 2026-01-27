@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ election.name }} 投票結果</title>
+    <link rel="stylesheet" href="{% static 'administrator/election_result.css' %}">
+</head>
+<body>
+
+<h1 class="page-title">{{ election.name }} 投票結果</h1>
+
+<div class="result-container">
+
+    <!-- 立候補者結果（左） -->
+    <section class="result-box">
+        <h2>立候補者結果</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>順位</th>
+                    <th>氏名</th>
+                    <th>政党</th>
+                    <th>得票数</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for result in candidate_results %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ result.candidate.name }}</td>
+                    <td>{{ result.candidate.party.name|default:"無所属" }}</td>
+                    <td>{{ result.result }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4" class="empty">結果がありません</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+    <!-- 政党結果（右） -->
+    <section class="result-box">
+        <h2>政党結果</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>順位</th>
+                    <th>政党名</th>
+                    <th>得票数</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for result in party_results %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ result.party.name }}</td>
+                    <td>{{ result.result }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="3" class="empty">結果がありません</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+</div>
+
+<a href="{% url 'administrator:election_detail' election.pk %}" class="back-btn">
+    選挙詳細に戻る
+</a>
+
+</body>
+</html>

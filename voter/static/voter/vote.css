@@ -1,0 +1,107 @@
+/* ===== ベース ===== */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 40px 0;
+    background-color: #f5f6fb;
+    font-family: "Segoe UI", "Hiragino Sans", "Meiryo", sans-serif;
+    color: #333;
+}
+
+/* ===== 中央コンテナ ===== */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 40px 50px;
+    border-radius: 18px;
+    box-shadow: 0 0 14px rgba(0, 0, 0, 0.06);
+}
+
+/* ===== 戻るリンク ===== */
+.back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: #666;
+    text-decoration: none;
+    font-size: 0.95em;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+/* ===== タイトル ===== */
+.title {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.8em;
+    font-weight: 600;
+}
+
+/* ===== フォーム ===== */
+.vote-form h3 {
+    margin: 30px 0 15px;
+    font-size: 1.2em;
+    border-left: 5px solid #6c7cff;
+    padding-left: 10px;
+}
+
+/* ===== 候補者テーブル ===== */
+.candidate-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+
+.candidate-table th {
+    background-color: #f1f2ff;
+    font-weight: 600;
+    padding: 12px;
+    text-align: left;
+}
+
+.candidate-table td {
+    padding: 12px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/* ===== ラジオ共通 ===== */
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+/* ===== 政党 2列レイアウト ===== */
+.party-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px 40px;
+    margin-bottom: 40px;
+}
+
+/* ===== 送信ボタン ===== */
+.submit-btn {
+    display: block;
+    margin: 0 auto;
+    padding: 14px 40px;
+    font-size: 1.05em;
+    font-weight: 600;
+    border-radius: 24px;
+    border: none;
+    background-color: #6c7cff;
+    color: #ffffff;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(108, 124, 255, 0.3);
+    transition: 0.2s;
+}
+
+.submit-btn:hover {
+    background-color: #5a69e6;
+    transform: translateY(-2px);
+}

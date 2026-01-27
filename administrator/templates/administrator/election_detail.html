@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>選挙情報登録フォーム</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'administrator/election_detail.css' %}">
+</head>
+<body>
+
+<a href="{% url 'administrator:election_list' %}" class="back-btn">選挙一覧に戻る</a>
+
+<h1>{{ election.name }}</h1>
+<p>タイプ: {{ election.type }}</p>
+<p>エリア: {{ election.area.name }}</p>
+<p>期間: {{ election.start_date }} ~ {{ election.end_date }}</p>
+<p>ステータス: {{ election.status }}</p>
+
+{% if election.status == "未実施" %}
+    <a href="{% url 'administrator:election_edit' election.pk %}">
+        <button>編集する</button>
+    </a>
+{% else %}
+    <button disabled>編集不可</button>
+{% endif %}
+
+<a href="{% url 'administrator:election_result' election.pk %}">
+    <button>選挙結果</button>
+</a>
+
+<div class="candidate-header">
+    <h2>立候補者一覧</h2>
+    <p>全{{ candidate_data|length }}名</p>
+</div>
+<ul>
+{% for item in candidate_data %}
+    <li>
+        {{ item.candidate.name }}
+        {% if item.candidate.party %}
+            ({{ item.candidate.party.name }})
+        {% endif %}
+        - 投票数: {{ item.vote_count }}
+    </li>
+{% endfor %}
+</ul>
+
+<a href="{% url 'administrator:election_list' %}" class="back-btn">選挙一覧に戻る</a>
+
+</body>
+</html>

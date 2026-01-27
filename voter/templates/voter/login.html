@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>投票者ログイン</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'voter/login.css' %}">
+</head>
+<body>
+<div class="container">
+    <h1>投票者ログイン</h1>
+
+    {% if error %}
+        <p style="color:red;">{{ error }}</p>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <p>ログイン方法を選択してください</p>
+        <div class="radio-group">
+            <label class="radio-item">
+                <input type="radio" name="id_type" value="my_number" required>
+                マイナンバー
+            </label>
+
+            <label class="radio-item">
+                <input type="radio" name="id_type" value="vote_code">
+                投票用コード
+            </label>
+        </div>
+
+        <label>ログインID</label><br>
+        <input type="text" name="login_id" required maxlength="12">
+
+        <label>パスワード</label><br>
+        <input type="password" name="password" required>
+
+        <button type="submit">ログイン</button>
+    </form>
+</div>
+</body>
+</html>

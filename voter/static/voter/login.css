@@ -1,0 +1,116 @@
+/* ===== 全体 ===== */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #fdfcff;
+    font-family: "Segoe UI", "Hiragino Sans", "Meiryo", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* ===== コンテナ ===== */
+.login-container {
+    background-color: #ffffff;
+    padding: 50px 80px;
+    border-radius: 30px;
+    box-shadow: 0 0 12px rgba(180, 180, 255, 0.18);
+    text-align: center;
+    width: 420px;
+}
+
+/* ===== タイトル ===== */
+h1 {
+    font-size: 2.4em;
+    color: #b5b5ff;
+    margin-bottom: 20px;
+    font-weight: 600;
+    text-shadow: 2px 2px 5px rgba(180, 180, 255, 0.3);
+}
+
+/* ===== エラーメッセージ ===== */
+.error {
+    color: #ff6b6b;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* ===== 説明文 ===== */
+.description {
+    color: #8a7cff;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+/* ===== 共通 input（text / password のみ） ===== */
+input[type="text"],
+input[type="password"] {
+    display: block;
+    width: 100%;
+    padding: 10px 10px;
+    margin: 14px 0;
+    border-radius: 8px;
+    border: 1px solid #d6d6ff;
+    box-shadow: 0 2px 6px rgba(180, 180, 255, 0.2);
+    font-size: 0.95em;
+    color: #4c4c7f;
+    transition: 0.2s;
+}
+
+input::placeholder {
+    color: #b2b2cc;
+}
+
+input:focus {
+    border-color: #b2b2ff;
+    box-shadow: 0 0 8px rgba(150, 150, 255, 0.4);
+    outline: none;
+}
+
+/* ===== ラジオボタン横並び（最重要） ===== */
+.radio-group {
+    display: flex;
+    justify-content: center;
+    gap: 36px;
+    margin: 20px 0 30px;
+}
+
+.radio-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.95em;
+    color: #6a6ab0;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* radio は block にしない */
+.radio-item input[type="radio"] {
+    display: inline-block;
+    width: auto;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* ===== ボタン ===== */
+button {
+    margin-top: 20px;
+    background-color: #d8d8ff;
+    border: none;
+    border-radius: 18px;
+    padding: 12px 30px;
+    font-size: 1em;
+    cursor: pointer;
+    box-shadow: 3px 5px 8px rgba(150, 150, 255, 0.3);
+    color: #4c4c7f;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+button:hover {
+    background-color: #c8c8ff;
+    transform: translateY(-2px);
+    box-shadow: 4px 6px 10px rgba(150, 150, 255, 0.35);
+}

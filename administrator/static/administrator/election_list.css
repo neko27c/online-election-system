@@ -1,0 +1,122 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #fdfcff;
+    font-family: "Segoe UI", "Hiragino Sans", "Meiryo", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+}
+
+/* ===== コンテナ ===== */
+.execute-container {
+    margin-top: 60px;
+    background-color: #ffffff;
+    padding: 40px 70px;
+    border-radius: 30px;
+    box-shadow: 0 0 10px rgba(180, 180, 255, 0.15);
+    width: 750px;
+}
+
+/* ===== タイトル ===== */
+h1 {
+    font-size: 2em;
+    color: #b580ff;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* ===== 検索ボックス ===== */
+.search-box {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.search-box input {
+    width: 250px;
+    padding: 8px 12px;
+    border: 1px solid #d6d6ff;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(180, 180, 255, 0.2);
+    outline: none;
+}
+
+/* ===== テーブル ===== */
+.election-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    font-size: 0.95em;
+}
+
+.election-table th {
+    background-color: #f2f2ff;
+    color: #4c4c7f;
+    padding: 10px;
+    border-bottom: 2px solid #d8d8ff;
+}
+
+.election-table td {
+    padding: 10px;
+    border-bottom: 1px solid #eeeaff;
+}
+
+/* ===== 状態ラベル ===== */
+.status {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+.status.not-started {
+    background-color: #ede7ff;
+    color: #7b5bdc;
+}
+
+.status.active {
+    background-color: #d8d3ff;
+    color: #5a4acf;
+}
+
+.status.stopped {
+    background-color: #e4e4e4;
+    color: #777;
+}
+
+/* ===== 操作ボタン ===== */
+.start-btn,
+.stop-btn {
+    border: none;
+    border-radius: 10px;
+    padding: 6px 14px;
+    font-weight: bold;
+    color: #4c4c7f;
+    cursor: pointer;
+    box-shadow: 2px 3px 5px rgba(150, 150, 255, 0.25);
+    transition: 0.2s;
+}
+
+.start-btn {
+    background-color: #e4e1ff;
+}
+
+.start-btn:hover {
+    background-color: #d7d2ff;
+    transform: translateY(-1px);
+}
+
+.stop-btn {
+    background-color: #dedede;
+}
+
+.stop-btn:hover {
+    background-color: #cccccc;
+    transform: translateY(-1px);
+}
+
+.disabled-link {
+    color: gray;
+}

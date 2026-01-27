@@ -1,0 +1,56 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: #f5f6fb;
+    font-family: "Segoe UI", "Hiragino Sans", "Meiryo", sans-serif;
+
+    /* 🔴 これが決定打 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* コンテンツ全体 */
+.wrapper {
+    width: 100%;
+    max-width: 520px;
+    padding: 40px 30px;
+    background-color: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    text-align: center;
+}
+
+/* タイトル */
+h1 {
+    color: #2d7ef7;
+    margin-bottom: 24px;
+}
+
+/* メッセージ */
+p {
+    font-size: 1.1em;
+    margin-bottom: 36px;
+    color: #444;
+}
+
+/* 戻るボタン */
+.back-btn {
+    display: inline-block;
+    padding: 14px 36px;
+    background-color: #4c5cff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 22px;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.back-btn:hover {
+    background-color: #3f4be0;
+    transform: translateY(-2px);
+}

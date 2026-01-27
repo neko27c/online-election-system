@@ -1,0 +1,91 @@
+/* ===== 全体設定 ===== */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #fdfcff;
+    font-family: "Segoe UI", "Hiragino Sans", "Meiryo", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* ===== メインコンテナ ===== */
+.menu-container {
+    text-align: center;
+    padding: 60px 100px;
+    background-color: #ffffff;
+    border-radius: 30px;
+    box-shadow: 0 0 10px rgba(180, 180, 255, 0.15);
+    position: relative;
+}
+
+/* ===== タイトル ===== */
+h1 {
+    font-size: 3em;
+    font-weight: 600;
+    color: #b5b5ff;
+    font-style: italic;
+    text-shadow: 3px 3px 6px rgba(180, 180, 255, 0.3);
+    margin: 0 0 20px 0;
+}
+
+/* ===== 区切り線 ===== */
+hr {
+    width: 60%;
+    border: none;
+    border-top: 2px solid #d8d8ff;
+    margin: 10px auto 50px auto;
+}
+
+/* ===== メニューグリッド ===== */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 200px);
+    grid-gap: 30px 60px;
+    justify-content: center;
+    margin-bottom: 60px;
+}
+
+/* ===== 各メニューボタン ===== */
+.menu-btn {
+    display: inline-block;
+    text-decoration: none;
+    color: #4c4c7f;
+    background-color: #ffffff;
+    border: 1px solid #d6d6ff;
+    border-radius: 10px;
+    padding: 14px 20px;
+    font-size: 1em;
+    box-shadow: 2px 4px 6px rgba(150, 150, 255, 0.25);
+    transition: 0.2s;
+}
+
+.menu-btn:hover {
+    background-color: #f2f2ff;
+    transform: translateY(-3px);
+    box-shadow: 3px 6px 8px rgba(150, 150, 255, 0.3);
+}
+
+/* ===== ログアウトボタン ===== */
+.logout-btn {
+    position: absolute;
+    right: 40px;
+    bottom: 40px;
+    background-color: #d8d8ff;
+    border: none;
+    border-radius: 18px;
+    padding: 12px 26px;
+    font-size: 1em;
+    cursor: pointer;
+    box-shadow: 3px 5px 8px rgba(150, 150, 255, 0.3);
+    color: #4c4c7f;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.logout-btn:hover {
+    background-color: #c8c8ff;
+    transform: translateY(-2px);
+    box-shadow: 4px 6px 10px rgba(150, 150, 255, 0.35);
+}

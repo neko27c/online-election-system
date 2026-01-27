@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>管理者メニュー</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'administrator/main_menu.css' %}">
+</head>
+<body>
+    <div class="menu-container">
+        <h1><i>Admin&nbsp;menu</i></h1>
+        <hr>
+        <div class="menu-grid">
+            <a href="{% url 'administrator:voter_create' %}" class="menu-btn">アカウント<br>新規登録</a>
+            <a href="{% url 'administrator:voter_delete_list' %}" class="menu-btn">アカウント<br>一覧・削除</a>
+            <a href="{% url 'administrator:election_list' %}" class="menu-btn">選挙一覧・編集</a>
+            <a href="{% url 'administrator:election_create' %}" class="menu-btn">選挙情報入力</a>
+        </div>
+        <form method="post" action="{% url 'administrator:logout' %}">
+            {% csrf_token %}
+            <button class="logout-btn">ログアウト</button>
+        </form>
+    </div>
+</body>
+</html>

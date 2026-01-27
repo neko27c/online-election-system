@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ election.name }} 編集</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'administrator/election_edit.css' %}">
+</head>
+<body>
+<div class="container">
+
+<h1>{{ election.name }} 編集</h1>
+
+<form method="post" enctype="multipart/form-data" class="main-form">
+{% csrf_token %}
+
+<a href="{% url 'administrator:election_detail' election.pk %}" class="back-btn">
+    選挙詳細に戻る
+</a>
+
+{% if messages %}
+    {% for message in messages %}
+        <p class="message {{ message.tags }}">
+            {{ message }}
+        </p>
+    {% endfor %}
+{% endif %}
+
+{% if errors.date %}
+<p class="error" style="color:red;">{{ errors.date }}</p>
+{% endif %}
+{% if success.date %}
+<p class="success" style="color:bulle;">{{ success.date }}</p>
+{% endif %}
+
+<hr>
+<h2>立候補者登録</h2>
+
+<label>
+    氏名：
+    <input type="text" name="candidate_name" required>
+</label>
+
+<label>
+    所属政党：
+    <select name="party_id">
+        <option value="">---</option>
+        {% for party in parties %}
+            <option value="{{ party.id }}">{{ party.name }}</option>
+        {% endfor %}
+    </select>
+</label>
+
+<button type="submit" class="save-btn">保存</button>
+</form>
+
+<hr>
+<div class="candidate-header">
+    <h2>登録済み立候補者</h2>
+    <p>全{{ candidates|length }}名</p>
+</div>
+
+<ul>
+{% for candidate in candidates %}
+    <li class="candidate-item">
+        <span>
+            {{ candidate.name }}
+            （{{ candidate.party.name|default:"無所属" }}）
+        </span>
+
+        <form method="post" class="delete-form"
+              onsubmit="return confirm('この立候補者を削除しますか？');">
+            {% csrf_token %}
+            <input type="hidden" name="delete_candidate_id" value="{{ candidate.id }}">
+            <button type="submit" class="delete-btn">削除</button>
+        </form>
+    </li>
+{% empty %}
+    <li>まだ立候補者はいません</li>
+{% endfor %}
+</ul>
+
+<a href="{% url 'administrator:election_detail' election.pk %}" class="back-btn">
+    選挙詳細に戻る
+</a>
+
+</div>
+
+</body>
+</html>

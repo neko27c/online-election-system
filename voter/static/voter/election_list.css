@@ -1,0 +1,94 @@
+/* ===== ベース ===== */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 40px 0;
+    background-color: #f5f6fb;
+    font-family: "Segoe UI", "Hiragino Sans", "Meiryo", sans-serif;
+    color: #333;
+}
+
+/* ===== 全体コンテナ ===== */
+body > * {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ===== コンテナ ===== */
+.container {
+    max-width: 700px;
+    margin: 80px auto;
+    background-color: #ffffff;
+    padding: 40px 50px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(120, 120, 255, 0.15);
+}
+
+/* ===== タイトル ===== */
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.8em;
+    font-weight: 600;
+}
+
+/* ===== 選挙一覧 ===== */
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    background-color: #ffffff;
+    margin-bottom: 15px;
+    padding: 16px 20px;
+    border-radius: 14px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ===== 選挙リンク ===== */
+li a {
+    font-size: 1.05em;
+    font-weight: 600;
+    color: #4c5cff;
+    text-decoration: none;
+}
+
+li a:hover {
+    text-decoration: underline;
+}
+
+/* ===== 日付表示 ===== */
+li span,
+li {
+    font-size: 0.95em;
+    color: #555;
+}
+
+/* ===== 投票可能なし ===== */
+p {
+    text-align: center;
+    color: #777;
+    margin-top: 40px;
+}
+
+/* ===== マイページ戻る ===== */
+a[href*="dashboard"] {
+    display: block;
+    text-align: center;
+    margin-top: 40px;
+    color: #666;
+    text-decoration: none;
+}
+
+a[href*="dashboard"]:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>投票状況</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'voter/dashboard.css' %}">
+</head>
+<body>
+
+<div class="container">
+    <h1>投票状況</h1>
+
+    <p class="login-user">
+        ログイン中：<span>{{ voter.person.name }}</span> さん
+    </p>
+
+    <div class="top-links">
+        <a href="{% url 'election_list' %}" class="btn">選挙一覧へ</a>
+        <a href="{% url 'logout' %}" class="logout">ログアウト</a>
+    </div>
+
+    <table>
+        <tr>
+            <th>投票済み選挙一覧</th>
+        </tr>
+
+        {% for vote in votes %}
+        <tr>
+            <td>{{ vote.election.name }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td class="empty">まだ投票していません</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>管理者ログイン</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'administrator/login.css' %}">
+</head>
+<body>
+    <div class="login-container">
+        <h1><i>Login</i></h1>
+        <hr>
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="login_id" placeholder="管理者ID" required>
+            <input type="password" name="password" placeholder="パスワード" required>
+            {% if error %}
+                <p class="error">{{ error }}</p>
+            {% endif %}
+            <button type="submit">ログイン</button>
+        </form>
+    </div>
+</body>
+</html>

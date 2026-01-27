@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>選挙一覧</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'voter/election_list.css' %}">
+</head>
+<body>
+    <div class="container">
+    <h1>投票可能な選挙一覧</h1>
+
+    {% if elections %}
+        <ul>
+        {% for election in elections %}
+            <li>
+                <a href="{% url 'vote_page' election.id %}">
+                    {{ election.name }}
+                </a>
+                {{ election.type}}
+                （{{ election.start_date|date:"Y-m-d" }} 〜 {{ election.end_date|date:"Y-m-d" }}）
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>現在、投票できる選挙はありません。</p>
+    {% endif %}
+
+    <br>
+    <a href="{% url 'dashboard' %}">マイページに戻る</a>
+    </div>
+</body>
+</html>
