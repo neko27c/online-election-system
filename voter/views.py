@@ -5,6 +5,7 @@ from django.contrib.auth.hashers import check_password
 from .models import PersonalInfo, Voter, VoteStatus
 from electionapp.models import Election, Candidate, Party, CandidateVoteResult, PartyVoteResult
 from django.db import IntegrityError, transaction
+from django.contrib.sessions.models import Session
 
 # ログイン状況確認
 def get_login_voter(request):
@@ -73,10 +74,20 @@ def voter_login(request):
                 "error": "パスワードが正しくありません。"
             })
 
-        # ログイン成功
+        # 2重ログイン対策
+        if voter.current_session_key:
+            Session.objects.filter(
+                session_key=voter.current_session_key
+            ).delete()
+
+        # セッション初期化
         request.session.flush()
         request.session["voter_id"] = voter.id
         request.session["person_id"] = voter.person_id
+
+        # 新しいセッションキーを保存
+        voter.current_session_key = request.session.session_key
+        voter.save(update_fields=["current_session_key"])
 
         return redirect("dashboard")
 
@@ -86,8 +97,19 @@ def voter_login(request):
 
 # ログアウト処理
 def voter_logout(request):
+    voter_id = request.session.get("voter_id")
+
+    if voter_id:
+        try:
+            voter = Voter.objects.get(id=voter_id)
+            voter.current_session_key = None
+            voter.save(update_fields=["current_session_key"])
+        except Voter.DoesNotExist:
+            pass
+
     request.session.flush()
     return redirect('login')
+
 
 
 # 投票者マイページ（投票状況一覧）

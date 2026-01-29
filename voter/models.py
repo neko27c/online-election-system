@@ -26,6 +26,11 @@ class Voter(models.Model):
     )
     vote_code=models.CharField(null=True,blank=True,unique=True)
     password=models.CharField()
+    current_session_key = models.CharField(
+        max_length=40,
+        blank=True,
+        null=True
+    )
     
 # 投票状況
 class VoteStatus(models.Model):
