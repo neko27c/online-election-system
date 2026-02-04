@@ -9,11 +9,9 @@
 <body>
 <div class="delete-container">
 
-<div class="top-buttons">
-    <a href="{% url 'administrator:main_menu' %}" class="back-btn">
-        管理者メニューに戻る
-    </a>
-</div>
+<a href="{% url 'administrator:main_menu' %}" class="back-btn">
+    管理者メニューに戻る
+</a>
 
 <h1>アカウント削除</h1>
 
@@ -46,7 +44,9 @@
 <form method="post" action="{% url 'administrator:voter_delete_list' %}">
     {% csrf_token %}
 
-    <button type="submit" class="action-btn">一括削除</button>
+    <div class="top-buttons">
+        <button type="submit" class="action-btn">一括削除</button>
+    </div>
 
     <table class="voter-table">
         <thead>
