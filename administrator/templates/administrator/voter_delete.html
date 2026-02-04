@@ -9,6 +9,13 @@
 <body>
 <div class="delete-container">
 
+<div class="top-buttons">
+    <button type="submit" class="action-btn">一括削除</button>
+    <a href="{% url 'administrator:main_menu' %}" class="back-btn">
+        管理者メニューに戻る
+    </a>
+</div>
+
 <h1>アカウント削除</h1>
 
 {% if messages %}
@@ -39,13 +46,6 @@
 <!-- 一括削除 form（ここが重要） -->
 <form method="post" action="{% url 'administrator:voter_delete_list' %}">
     {% csrf_token %}
-
-    <div class="top-buttons">
-        <button type="submit" class="action-btn">一括削除</button>
-        <a href="{% url 'administrator:main_menu' %}" class="back-btn">
-            管理者メニューに戻る
-        </a>
-    </div>
 
     <table class="voter-table">
         <thead>
