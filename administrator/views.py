@@ -183,7 +183,11 @@ class VoterDeleteListView(AdministratorLoginRequiredMixin, View):
     def post(self, request):
         ids = request.POST.getlist("selected_voters")
         if ids:
+            count = len(ids)
             Voter.objects.filter(id__in=ids).delete()
+            messages.success(request, f"{count}件のアカウントを削除しました。")
+        else:
+            messages.warning(request, "削除するアカウントが選択されていません。")
 
         # 検索条件は保持
         request.session["voter_delete_keep"] = True
@@ -195,7 +199,8 @@ class VoterDeleteView(AdministratorLoginRequiredMixin, View):
     def post(self, request, pk):
         voter = get_object_or_404(Voter, pk=pk)
         voter.delete()
-
+        
+        messages.success(request, "アカウントを削除しました。")
         request.session["voter_delete_keep"] = True
         return redirect(reverse_lazy("administrator:voter_delete_list"))
 

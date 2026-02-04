@@ -104,3 +104,23 @@ h1 {
     background-color: #c8c8ff;
     transform: translateY(-1px);
 }
+
+.message-box {
+    margin-bottom: 15px;
+}
+
+.message {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.message.success {
+    background-color: #e6fffa;
+    color: #065f46;
+}
+
+.message.warning {
+    background-color: #fff7ed;
+    color: #9a3412;
+}
