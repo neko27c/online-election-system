@@ -12,7 +12,6 @@
 
 <div class="result-container">
 
-    <!-- 立候補者結果（左） -->
     <section class="result-box">
         <h2>立候補者結果</h2>
 
@@ -42,33 +41,34 @@
         </table>
     </section>
 
-    <!-- 政党結果（右） -->
-    <section class="result-box">
-        <h2>政党結果</h2>
+    {% if election.type == "衆議院" or election.type == "参議院" %}
+        <section class="result-box">
+            <h2>政党結果</h2>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>順位</th>
-                    <th>政党名</th>
-                    <th>得票数</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for result in party_results %}
-                <tr>
-                    <td>{{ forloop.counter }}</td>
-                    <td>{{ result.party.name }}</td>
-                    <td>{{ result.result }}</td>
-                </tr>
-                {% empty %}
-                <tr>
-                    <td colspan="3" class="empty">結果がありません</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </section>
+            <table>
+                <thead>
+                    <tr>
+                        <th>順位</th>
+                        <th>政党名</th>
+                        <th>得票数</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for result in party_results %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ result.party.name }}</td>
+                        <td>{{ result.result }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="3" class="empty">結果がありません</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    {% endif %}
 
 </div>
 
