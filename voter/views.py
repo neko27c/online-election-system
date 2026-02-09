@@ -81,7 +81,6 @@ def voter_login(request):
             ).delete()
 
         # セッション初期化
-        request.session.flush()
         request.session["voter_id"] = voter.id
         request.session["person_id"] = voter.person_id
 
@@ -107,7 +106,8 @@ def voter_logout(request):
         except Voter.DoesNotExist:
             pass
 
-    request.session.flush()
+    request.session.pop("voter_id", None)
+    request.session.pop("person_id", None)
     return redirect('login')
 
 

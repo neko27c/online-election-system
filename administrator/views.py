@@ -46,7 +46,6 @@ class AdministratorLoginView(View):
             # パスワードチェック
             if check_password(password, admin.password):
                 # セッションにログイン情報保存
-                request.session.flush()
                 request.session['login_id'] = admin.id
                 request.session['name'] = admin.name
                 # メインメニューに飛ばす
