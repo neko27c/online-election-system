@@ -487,7 +487,3 @@ class ElectionResultView(AdministratorLoginRequiredMixin, View):
             "candidate_results": candidate_results,
             "party_results": party_results,
         })
-
-
-# 立候補者情報の編集
-
